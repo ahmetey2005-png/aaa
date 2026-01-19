@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophia Bilinci | Premium Üyelik ve Rehberlik</title>
+    <meta name="description" content="Baha Coşkun ile spiritüel rehberlik, premium üyelik içerikleri ve danışmanlık hizmetleri.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            50: "#fff1f2",
+                            100: "#ffe4e6",
+                            600: "#e11d48",
+                            800: "#9f1239",
+                            900: "#881337",
+                        },
+                        gold: {
+                            100: "#fef9c3",
+                            300: "#fde047",
+                            400: "#facc15", // Main Gold
+                            500: "#eab308",
+                            600: "#ca8a04", // Dark Gold
+                        }
+                    },
+                    fontFamily: {
+                        serif: ["Cinzel", "serif"],
+                        sans: ["Lato", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9f1239;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #881337;
+        }
+        
+        .dragon-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ca8a04' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .premium-gradient {
+            background: linear-gradient(135deg, #881337 0%, #000000 100%);
+        }
+        
+        .gold-text-gradient {
+            background: linear-gradient(to right, #facc15, #fef9c3, #ca8a04);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-rose-50 dragon-pattern min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <header class="fixed w-full z-50 transition-all duration-300 bg-white/95 shadow-md border-b-2 border-gold-400" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-rose-900 rounded-full flex items-center justify-center border-2 border-gold-400 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-dragon text-gold-400 text-2xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl font-bold text-rose-900 tracking-wider">SOPHIA BİLİNCİ</span>
+                    <span class="text-xs text-gold-600 font-serif tracking-widest">BAHA COŞKUN</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-6">
+                <a href="#" onclick="navigateTo('home')" class="text-gray-700 hover:text-rose-700 font-medium transition-colors">Ana Sayfa</a>
+                <a href="#" onclick="navigateTo('about')" class="text-gray-700 hover:text-rose-700 font-medium transition-colors">Biz Kimiz</a>
+                <a href="#" onclick="navigateTo('services')" class="text-gray-700 hover:text-rose-700 font-medium transition-colors">Danışmanlık</a>
+                <a href="#" onclick="navigateTo('premium')" class="text-rose-900 hover:text-gold-600 font-bold transition-colors flex items-center gap-2">
+                    <i class="fas fa-crown text-gold-500"></i> Premium Üyelik
+                </a>
+                <a href="#" onclick="navigateTo('store')" class="text-gray-700 hover:text-rose-700 font-medium transition-colors">Mağaza</a>
+                <a href="#" onclick="navigateTo('blog')" class="text-gray-700 hover:text-rose-700 font-medium transition-colors">Blog</a>
+            </nav>
+
+            <!-- Auth Buttons -->
+            <div class="hidden lg:flex items-center gap-4" id="auth-buttons">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-rose-900 text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gold-200 absolute w-full shadow-xl">
+            <div class="flex flex-col p-4 gap-4">
+                <a href="#" onclick="navigateTo('home'); toggleMobileMenu()" class="text-gray-700 hover:text-rose-700">Ana Sayfa</a>
+                <a href="#" onclick="navigateTo('premium'); toggleMobileMenu()" class="text-rose-900 font-bold flex items-center gap-2"><i class="fas fa-crown text-gold-500"></i> Premium Üyelik</a>
+                <a href="#" onclick="navigateTo('services'); toggleMobileMenu()" class="text-gray-700 hover:text-rose-700">Danışmanlık</a>
+                <a href="#" onclick="navigateTo('store'); toggleMobileMenu()" class="text-gray-700 hover:text-rose-700">Mağaza</a>
+                <div id="mobile-auth-buttons" class="flex flex-col gap-2 mt-2">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="flex-grow pt-20">
+        <!-- Content injected via JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-rose-900 text-white border-t-4 border-gold-400 mt-auto">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Brand -->
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <i class="fas fa-dragon text-gold-400 text-3xl"></i>
+                        <span class="font-serif text-2xl font-bold text-white">SOPHIA BİLİNCİ</span>
+                    </div>
+                    <p class="text-rose-100 mb-4">İçsel yolculuğunuzda size rehberlik eden ışık. Baha Coşkun ile spiritüel uyanış.</p>
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="https://youtube.com/@bahacoskun?si=HN0hx1E-rQF2uQTy" target="_blank" class="w-10 h-10 rounded-full bg-white text-rose-900 flex items-center justify-center hover:bg-gold-400 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white text-rose-900 flex items-center justify-center hover:bg-gold-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="text-center">
+                    <h3 class="font-serif text-xl font-bold text-gold-400 mb-4">Hızlı Erişim</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="navigateTo('premium')" class="text-rose-100 hover:text-gold-400 font-bold">Premium Üyelik</a></li>
+                        <li><a href="#" onclick="navigateTo('services')" class="text-rose-100 hover:text-gold-400">Danışmanlık Al</a></li>
+                        <li><a href="#" onclick="navigateTo('store')" class="text-rose-100 hover:text-gold-400">Dijital Mağaza</a></li>
+                        <li><a href="#" onclick="navigateTo('contact')" class="text-rose-100 hover:text-gold-400">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="text-center md:text-right">
+                    <h3 class="font-serif text-xl font-bold text-gold-400 mb-4">Bültene Katılın</h3>
+                    <form onsubmit="handleSubscribe(event)" class="flex flex-col gap-2">
+                        <input type="email" placeholder="E-posta adresiniz" class="px-4 py-2 rounded bg-rose-800 border border-rose-700 text-white placeholder-rose-300 focus:outline-none focus:border-gold-400" required>
+                        <button type="submit" class="px-4 py-2 bg-gold-400 text-rose-900 font-bold rounded hover:bg-gold-300 transition-colors">Abone Ol</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-rose-800 mt-8 pt-8 text-center text-rose-200 text-sm">
+                <p>&copy; 2023 Sophia Bilinci - Baha Coşkun. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[60]">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 relative border-2 border-gold-400">
+            <button onclick="closeModal('login-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-rose-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <i class="fas fa-dragon text-rose-900 text-4xl mb-2"></i>
+                <h2 class="text-2xl font-serif font-bold text-rose-900">Giriş Yap</h2>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">E-posta / Kullanıcı Adı</label>
+                    <input type="text" name="username" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
+                    <input type="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent" required>
+                </div>
+                <button type="submit" class="w-full bg-rose-900 text-white py-2 rounded font-bold hover:bg-rose-800 transition-colors">Giriş Yap</button>
+            </form>
+            <div class="mt-4 text-center text-sm">
+                <p>Hesabınız yok mu? <a href="#" onclick="closeModal('login-modal'); openModal('register-modal')" class="text-rose-600 font-bold hover:underline">Kayıt Ol</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[60]">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 relative border-2 border-gold-400">
+            <button onclick="closeModal('register-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-rose-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <i class="fas fa-spa text-rose-900 text-4xl mb-2"></i>
+                <h2 class="text-2xl font-serif font-bold text-rose-900">Aramıza Katılın</h2>
+            </div>
+            <form onsubmit="handleRegister(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad</label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">E-posta</label>
+                    <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
+                    <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent" required>
+                </div>
+                <button type="submit" class="w-full bg-gold-400 text-rose-900 py-2 rounded font-bold hover:bg-gold-500 transition-colors">Kayıt Ol</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Testimonial Submission Modal -->
+    <div id="testimonial-modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[60]">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg p-8 relative border-2 border-gold-400">
+            <button onclick="closeModal('testimonial-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-rose-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <i class="fas fa-comment-dots text-rose-900 text-4xl mb-2"></i>
+                <h2 class="text-2xl font-serif font-bold text-rose-900">Deneyiminizi Paylaşın</h2>
+                <p class="text-gray-600 text-sm">Yolculuğunuz başkalarına ışık olsun.</p>
+            </div>
+            <form onsubmit="handleTestimonialSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Görünen İsim</label>
+                    <input type="text" name="name" placeholder="Örn: Ayşe Y." class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Deneyiminiz</label>
+                    <textarea name="text" rows="4" placeholder="Baha Bey ile çalışmak..." class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent" required></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Hizmet Türü</label>
+                    <select name="role" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-rose-500 focus:border-transparent">
+                        <option value="Danışan">Bireysel Danışmanlık</option>
+                        <option value="Premium Üye">Premium Üyelik</option>
+                        <option value="Okuyucu">Kitap Okuyucusu</option>
+                        <option value="Katılımcı">Seminer Katılımcısı</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-gold-400 text-rose-900 py-2 rounded font-bold hover:bg-gold-500 transition-colors">Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal (Iyzico Simulation) -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[60]">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg p-0 relative overflow-hidden">
+            <div class="bg-blue-600 p-4 flex justify-between items-center text-white">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-xl">iyzico</span>
+                    <span class="text-xs opacity-80">Güvenli Ödeme</span>
+                </div>
+                <button onclick="closeModal('payment-modal')" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="mb-6 bg-gray-50 p-4 rounded border border-gray-200">
+                    <h3 class="font-bold text-gray-700" id="payment-product-name">Ürün Adı</h3>
+                    <p class="text-2xl font-bold text-blue-600" id="payment-product-price">0.00 TL</p>
+                    <input type="hidden" id="payment-type" value="">
+                </div>
+                <form onsubmit="handlePayment(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Kart Üzerindeki İsim</label>
+                        <input type="text" placeholder="AD SOYAD" class="w-full px-3 py-2 border border-gray-300 rounded" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Kart Numarası</label>
+                        <div class="relative">
+                            <input type="text" placeholder="0000 0000 0000 0000" class="w-full px-3 py-2 border border-gray-300 rounded pl-10" required>
+                            <i class="far fa-credit-card absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Son Kullanma</label>
+                            <input type="text" placeholder="AA/YY" class="w-full px-3 py-2 border border-gray-300 rounded" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">CVC</label>
+                            <input type="text" placeholder="123" class="w-full px-3 py-2 border border-gray-300 rounded" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded font-bold hover:bg-blue-700 transition-colors mt-4">Ödemeyi Tamamla</button>
+                    <div class="text-center mt-2">
+                        <img src="https://picsum.photos/200/30?random=99" alt="Payment Logos" class="h-6 mx-auto opacity-50">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Data & State ---
+        const state = {
+            currentUser: null, // null, 'user', 'admin'
+            isPremium: false, // true if user bought membership
+            view: 'home'
+        };
+
+        const premiumVideos = [
+            { id: 101, title: "Altın Ejderha Uyanışı - Bölüm 1", duration: "45 dk", image: "https://picsum.photos/400/250?random=50" },
+            { id: 102, title: "Derin Bilinçaltı Temizliği", duration: "60 dk", image: "https://picsum.photos/400/250?random=51" },
+            { id: 103, title: "Gül Frekansı Aktivasyonu", duration: "30 dk", image: "https://picsum.photos/400/250?random=52" },
+            { id: 104, title: "Ruhsal Rehberle Buluşma", duration: "55 dk", image: "https://picsum.photos/400/250?random=53" },
+            { id: 105, title: "Bolluk ve Bereket Ritüeli", duration: "40 dk", image: "https://picsum.photos/400/250?random=54" },
+            { id: 106, title: "Geçmiş Yaşam Şifası", duration: "75 dk", image: "https://picsum.photos/400/250?random=55" }
+        ];
+
+        const products = [
+            { id: 1, title: "Çakra Dengeleme Meditasyonu", type: "Video", price: 150, image: "https://picsum.photos/400/300?random=10" },
+            { id: 2, title: "Spiritüel Uyanış E-Kitabı", type: "E-Kitap", price: 90, image: "https://picsum.photos/400/300?random=11" },
+            { id: 3, title: "Bilinçaltı Temizliği Seansı", type: "Video Serisi", price: 300, image: "https://picsum.photos/400/300?random=12" }
+        ];
+
+        const blogPosts = [
+            { id: 1, title: "2024 Enerji Geçişleri", excerpt: "Bu yıl bizi bekleyen kozmik değişimler ve etkileri...", image: "https://picsum.photos/400/250?random=20" },
+            { id: 2, title: "Gül Frekansı Nedir?", excerpt: "Kalp çakrasını açan en yüksek frekanslardan biri olan gül...", image: "https://picsum.photos/400/250?random=21" }
+        ];
+
+        // Initial Testimonials Data
+        let testimonials = [
+            { id: 1, name: "Elif K.", text: "Baha Bey ile yaptığımız seans hayatımda bir dönüm noktası oldu. İçimdeki gücü hissetmeye başladım.", role: "Danışan", image: "https://picsum.photos/100?random=80" },
+            { id: 2, name: "Mehmet A.", text: "Premium üyelikteki meditasyonlar inanılmaz derin. Her sabah güne gül frekansı ile başlamak harika.", role: "Premium Üye", image: "https://picsum.photos/100?random=81" },
+            { id: 3, name: "Selin D.", text: "Spiritüel yolculuğumda kaybolmuş hissederken Sophia Bilinci ile tanıştım. Rehberliğiniz için teşekkürler.", role: "Katılımcı", image: "https://picsum.photos/100?random=82" }
+        ];
+
+        // Mock Database for Admin
+        let applications = [];
+
+        // --- Navigation & Rendering ---
+
+        function init() {
+            renderAuthButtons();
+            navigateTo('home');
+        }
+
+        function navigateTo(viewName) {
+            state.view = viewName;
+            const main = document.getElementById('main-content');
+            window.scrollTo(0, 0);
+
+            let content = '';
+
+            switch(viewName) {
+                case 'home':
+                    content = renderHome();
+                    break;
+                case 'about':
+                    content = renderAbout();
+                    break;
+                case 'services':
+                    content = renderServices();
+                    break;
+                case 'store':
+                    content = renderStore();
+                    break;
+                case 'blog':
+                    content = renderBlog();
+                    break;
+                case 'premium':
+                    content = renderPremium();
+                    break;
+                case 'admin':
+                    if (state.currentUser !== 'admin') {
+                        alert("Yetkisiz erişim!");
+                        navigateTo('home');
+                        return;
+                    }
+                    content = renderAdminPanel();
+                    break;
+                default:
+                    content = renderHome();
+            }
+
+            main.innerHTML = content;
+        }
+
+        // --- Render Functions ---
+
+        function renderHome() {
+            // Generate Testimonials HTML
+            const testimonialsHtml = testimonials.map(t => `
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gold-200 flex flex-col h-full relative">
+                    <div class="absolute -top-4 left-6 text-gold-400 text-4xl opacity-50">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 pt-4 flex-grow">"${t.text}"</p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-gray-100 pt-4">
+                        <img src="${t.image}" alt="${t.name}" class="w-12 h-12 rounded-full object-cover border-2 border-gold-400">
+                        <div>
+                            <h4 class="font-bold text-rose-900 text-sm">${t.name}</h4>
+                            <span class="text-xs text-gold-600 font-bold uppercase">${t.role}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <!-- Hero Section -->
+                <section class="relative h-[600px] flex items-center justify-center text-center text-white overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-rose-900 via-rose-800 to-amber-700 opacity-90 z-10"></div>
+                    <img src="https://picsum.photos/1920/1080?random=1" class="absolute inset-0 w-full h-full object-cover" alt="Background">
+                    
+                    <div class="relative z-20 container mx-auto px-4">
+                        <div class="mb-6 animate-bounce">
+                            <i class="fas fa-dragon text-gold-400 text-6xl drop-shadow-lg"></i>
+                        </div>
+                        <h1 class="font-serif text-5xl md:text-7xl font-bold mb-4 tracking-wide text-white drop-shadow-md">
+                            SOPHIA BİLİNCİ
+                        </h1>
+                        <p class="text-xl md:text-2xl font-light mb-8 text-rose-100 max-w-2xl mx-auto">
+                            Baha Coşkun rehberliğinde içsel potansiyelinizi keşfedin.
+                        </p>
+                        <div class="flex flex-col md:flex-row gap-4 justify-center">
+                            <button onclick="navigateTo('premium')" class="px-8 py-3 bg-gold-400 text-rose-900 font-bold rounded-full hover:bg-white hover:text-rose-900 transition-all transform hover:scale-105 shadow-lg border-2 border-gold-400">
+                                <i class="fas fa-crown mr-2"></i> Premium Üyelik
+                            </button>
+                            <button onclick="navigateTo('services')" class="px-8 py-3 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-rose-900 transition-all transform hover:scale-105 shadow-lg">
+                                Danışmanlık Al
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Section -->
+                <section class="py-16 bg-white">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-12">
+                            <h2 class="font-serif text-3xl font-bold text-rose-900">Hizmetlerimiz</h2>
+                            <div class="w-24 h-1 bg-gold-400 mx-auto mt-4"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="bg-rose-50 p-8 rounded-lg border border-rose-100 hover:shadow-xl transition-shadow text-center group">
+                                <i class="fas fa-crown text-gold-500 text-4xl mb-4"></i>
+                                <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">Premium İçerik</h3>
+                                <p class="text-gray-600 mb-4">Sadece üyelere özel video arşivi ve derin çalışmalar.</p>
+                                <button onclick="navigateTo('premium')" class="text-rose-600 font-bold hover:text-rose-800">Keşfet &rarr;</button>
+                            </div>
+                            <div class="bg-rose-50 p-8 rounded-lg border border-rose-100 hover:shadow-xl transition-shadow text-center group">
+                                <i class="fas fa-user-astronaut text-rose-600 text-4xl mb-4"></i>
+                                <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">Bireysel Danışmanlık</h3>
+                                <p class="text-gray-600 mb-4">Size özel spiritüel rehberlik ve enerji analizi.</p>
+                                <button onclick="navigateTo('services')" class="text-rose-600 font-bold hover:text-rose-800">Randevu Al &rarr;</button>
+                            </div>
+                            <div class="bg-rose-50 p-8 rounded-lg border border-rose-100 hover:shadow-xl transition-shadow text-center group">
+                                <i class="fas fa-store text-rose-600 text-4xl mb-4"></i>
+                                <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">Dijital Mağaza</h3>
+                                <p class="text-gray-600 mb-4">Tekil meditasyonlar ve e-kitaplar.</p>
+                                <button onclick="navigateTo('store')" class="text-rose-600 font-bold hover:text-rose-800">Mağazaya Git &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Testimonials Section (New) -->
+                <section class="py-20 bg-rose-50 relative overflow-hidden">
+                    <!-- Decorative Elements -->
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-gold-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-rose-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+
+                    <div class="container mx-auto px-4 relative z-10">
+                        <div class="text-center mb-12">
+                            <span class="text-gold-600 font-bold tracking-widest uppercase text-xs">Sizden Gelenler</span>
+                            <h2 class="font-serif text-3xl md:text-4xl font-bold text-rose-900 mt-2">Dönüşüm Hikayeleri</h2>
+                            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Sophia Bilinci ile yolları kesişen dostlarımızın deneyimleri.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                            ${testimonialsHtml}
+                        </div>
+
+                        <div class="text-center">
+                            <button onclick="openModal('testimonial-modal')" class="inline-flex items-center gap-2 px-8 py-3 bg-white border-2 border-rose-900 text-rose-900 font-bold rounded-full hover:bg-rose-900 hover:text-white transition-all shadow-md">
+                                <i class="fas fa-pen-fancy"></i> Kendi Deneyimini Paylaş
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderPremium() {
+            const hasAccess = state.currentUser && (state.isPremium || state.currentUser === 'admin');
+            if (hasAccess) {
+                return renderPremiumContent();
+            } else {
+                return renderPremiumSales();
+            }
+        }
+
+        function renderPremiumSales() {
+            return `
+                <section class="py-16 bg-gray-900 text-white min-h-screen relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+                        <div class="absolute top-10 left-10 w-64 h-64 bg-rose-600 rounded-full filter blur-3xl"></div>
+                        <div class="absolute bottom-10 right-10 w-64 h-64 bg-gold-500 rounded-full filter blur-3xl"></div>
+                    </div>
+
+                    <div class="container mx-auto px-4 relative z-10">
+                        <div class="text-center mb-16">
+                            <span class="text-gold-400 font-bold tracking-widest uppercase text-sm">Sophia Bilinci Özel</span>
+                            <h1 class="font-serif text-4xl md:text-6xl font-bold mt-2 mb-6 gold-text-gradient">Premium Üyelik</h1>
+                            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                                İçsel yolculuğunuzu derinleştirin. Sadece üyelere özel video arşivine, derin meditasyonlara ve aylık canlı yayın kayıtlarına sınırsız erişim sağlayın.
+                            </p>
+                        </div>
+
+                        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-rose-900 flex items-center justify-center flex-shrink-0 border border-gold-400">
+                                        <i class="fas fa-play text-gold-400"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gold-100">Sınırsız Video Erişimi</h3>
+                                        <p class="text-gray-400">Kapalı devre eğitim videoları ve seminer kayıtlarının tamamına erişin.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-rose-900 flex items-center justify-center flex-shrink-0 border border-gold-400">
+                                        <i class="fas fa-spa text-gold-400"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gold-100">Derin Meditasyonlar</h3>
+                                        <p class="text-gray-400">Çakra dengeleme, enerji temizliği ve ejderha enerjisi uyumlamaları.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-rose-900 flex items-center justify-center flex-shrink-0 border border-gold-400">
+                                        <i class="fas fa-star text-gold-400"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gold-100">Öncelikli Destek</h3>
+                                        <p class="text-gray-400">Sorularınızda ve randevu taleplerinizde öncelik hakkı.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/10 backdrop-blur-lg border border-gold-400/30 rounded-2xl p-8 text-center transform hover:scale-105 transition-transform duration-300">
+                                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gold-500 text-rose-900 px-4 py-1 rounded-full text-sm font-bold shadow-lg">
+                                    EN POPÜLER
+                                </div>
+                                <h3 class="text-2xl font-serif font-bold text-white mb-2">Altın Ejderha Üyeliği</h3>
+                                <div class="text-5xl font-bold text-gold-400 mb-2">500 TL<span class="text-lg text-gray-400 font-normal">/ay</span></div>
+                                <p class="text-gray-300 mb-8">İstediğiniz zaman iptal edebilirsiniz.</p>
+                                
+                                <button onclick="buyMembership()" class="w-full py-4 bg-gradient-to-r from-gold-400 to-gold-600 text-rose-900 font-bold rounded-xl hover:from-gold-300 hover:to-gold-500 transition-all shadow-lg text-lg">
+                                    Hemen Katıl
+                                </button>
+                                <p class="mt-4 text-xs text-gray-400">Güvenli ödeme altyapısı (iyzico) ile korunmaktadır.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderPremiumContent() {
+            const videosHtml = premiumVideos.map(video => `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gold-200 group">
+                    <div class="relative">
+                        <img src="${video.image}" alt="${video.title}" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                            <div class="w-16 h-16 bg-gold-400 rounded-full flex items-center justify-center text-rose-900 pl-1">
+                                <i class="fas fa-play text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                            ${video.duration}
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-serif text-lg font-bold text-rose-900 mb-2">${video.title}</h3>
+                        <button class="text-sm text-gold-600 font-bold hover:text-gold-700 flex items-center gap-1">
+                            <i class="fas fa-play-circle"></i> İzlemeye Başla
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <section class="py-12 bg-rose-50 min-h-screen">
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-gold-300 pb-4">
+                            <div>
+                                <h1 class="font-serif text-3xl font-bold text-rose-900">Premium Kütüphane</h1>
+                                <p class="text-gray-600">Hoşgeldiniz, içsel yolculuğunuz için özel içerikler burada.</p>
+                            </div>
+                            <div class="mt-4 md:mt-0 bg-gold-100 text-gold-800 px-4 py-2 rounded-full text-sm font-bold border border-gold-300">
+                                <i class="fas fa-check-circle mr-2"></i>Üyelik Aktif
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${videosHtml}
+                        </div>
+                        
+                        <div class="mt-12 bg-white p-8 rounded-xl shadow border-l-4 border-rose-900">
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-4">Canlı Yayın Takvimi</h3>
+                            <p class="text-gray-600">Bir sonraki özel üye buluşması: <strong>25 Ekim 2023, Saat 21:00</strong></p>
+                            <button class="mt-4 px-4 py-2 bg-rose-900 text-white rounded hover:bg-rose-800 text-sm">Takvime Ekle</button>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderAbout() {
+            return `
+                <section class="py-16 bg-white">
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="md:w-1/2">
+                                <img src="https://picsum.photos/600/800?random=5" alt="Baha Coşkun" class="rounded-lg shadow-xl w-full object-cover h-[500px]">
+                            </div>
+                            <div class="md:w-1/2">
+                                <h2 class="font-serif text-4xl font-bold text-rose-900 mb-6">Biz Kimiz?</h2>
+                                <h3 class="text-2xl text-gold-600 font-serif mb-4">Baha Coşkun & Sophia Bilinci</h3>
+                                <p class="text-gray-600 mb-6 leading-relaxed">
+                                    Sophia Bilinci, bilgeliğin ve içsel ışığın peşinde olanlar için bir buluşma noktasıdır. Amacımız, her bireyin içindeki "ejderha" gücünü uyandırmak ve kalp çakrasını bir gül goncası gibi açmaktır.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderServices() {
+            return `
+                <section class="py-16 bg-rose-50">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-12">
+                            <h2 class="font-serif text-3xl font-bold text-rose-900">Danışmanlık Hizmetleri</h2>
+                            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Bireysel seanslar için ön görüşme randevusu oluşturun.</p>
+                        </div>
+
+                        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden border border-gold-200">
+                            <div class="md:flex">
+                                <div class="md:w-1/2 bg-rose-900 p-8 text-white flex flex-col justify-center">
+                                    <h3 class="font-serif text-2xl font-bold mb-4">Ön Görüşme Randevusu</h3>
+                                    <p class="mb-6 text-rose-100">Danışmanlık sürecinin verimli geçmesi için önce sizi tanımak istiyoruz.</p>
+                                </div>
+                                <div class="md:w-1/2 p-8">
+                                    <form onsubmit="handleConsultationSubmit(event)" class="space-y-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad</label>
+                                            <input type="text" name="name" class="w-full px-4 py-2 border border-gray-300 rounded" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Telefon</label>
+                                            <input type="tel" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Sebep</label>
+                                            <textarea name="reason" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded" required></textarea>
+                                        </div>
+                                        <button type="submit" class="w-full bg-gold-400 text-rose-900 font-bold py-3 rounded hover:bg-gold-500 transition-colors">
+                                            Başvuru Gönder
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderStore() {
+            let productsHtml = products.map(product => `
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-all group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-2 right-2 bg-gold-400 text-rose-900 text-xs font-bold px-2 py-1 rounded">
+                            ${product.type}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-lg font-bold text-gray-800 mb-2 h-14 line-clamp-2">${product.title}</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-2xl font-bold text-rose-600">${product.price} TL</span>
+                            <button onclick="openPaymentModal('${product.title}', ${product.price}, 'product')" class="px-4 py-2 bg-rose-900 text-white rounded hover:bg-rose-800 transition-colors">
+                                <i class="fas fa-shopping-cart mr-2"></i>Satın Al
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <section class="py-16 bg-gray-50">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-12">
+                            <h2 class="font-serif text-3xl font-bold text-rose-900">Dijital Mağaza</h2>
+                            <p class="text-gray-600 mt-2">Tekil satın alımlar için meditasyonlar ve e-kitaplar.</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            ${productsHtml}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderBlog() {
+            let postsHtml = blogPosts.map(post => `
+                <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+                    <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">${post.title}</h3>
+                        <p class="text-gray-600 text-sm mb-4">${post.excerpt}</p>
+                        <a href="#" class="text-rose-600 font-bold hover:underline text-sm">Devamını Oku</a>
+                    </div>
+                </article>
+            `).join('');
+
+            return `
+                <section class="py-16 bg-white">
+                    <div class="container mx-auto px-4">
+                        <div class="mb-16">
+                            <div class="text-center mb-8">
+                                <h2 class="font-serif text-3xl font-bold text-rose-900 mb-4">Ücretsiz Video İçerikler</h2>
+                                <a href="https://youtube.com/@bahacoskun?si=HN0hx1E-rQF2uQTy" target="_blank" class="inline-flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
+                                    <i class="fab fa-youtube"></i> Kanalı Ziyaret Et
+                                </a>
+                            </div>
+                            <div class="max-w-4xl mx-auto aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="font-serif text-3xl font-bold text-rose-900 mb-8 text-center">Blog Yazıları</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                ${postsHtml}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderAdminPanel() {
+            const appsHtml = applications.length > 0 
+                ? applications.map((app, idx) => `
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-3">${idx + 1}</td>
+                        <td class="p-3 font-bold">${app.name}</td>
+                        <td class="p-3">${app.phone}</td>
+                        <td class="p-3 text-sm text-gray-600">${app.reason}</td>
+                        <td class="p-3 text-xs text-gray-400">${new Date().toLocaleDateString()}</td>
+                    </tr>
+                `).join('')
+                : '<tr><td colspan="5" class="p-4 text-center text-gray-500">Henüz başvuru yok.</td></tr>';
+
+            return `
+                <section class="py-12 bg-gray-100 min-h-screen">
+                    <div class="container mx-auto px-4">
+                        <div class="flex justify-between items-center mb-8">
+                            <h1 class="text-3xl font-serif font-bold text-rose-900">Yönetici Paneli</h1>
+                            <button onclick="logout()" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">Çıkış Yap</button>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-bold mb-4 text-gray-800 border-b pb-2">Randevu Başvuruları</h2>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left">
+                                        <thead>
+                                            <tr class="bg-rose-50 text-rose-900">
+                                                <th class="p-3">#</th>
+                                                <th class="p-3">İsim</th>
+                                                <th class="p-3">Telefon</th>
+                                                <th class="p-3">Sebep</th>
+                                                <th class="p-3">Tarih</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            ${appsHtml}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="space-y-6">
+                                <div class="bg-white rounded-lg shadow p-6">
+                                    <h2 class="text-xl font-bold mb-4 text-gray-800">Premium İçerik Yönetimi</h2>
+                                    <p class="text-sm text-gray-600 mb-4">Aktif Video Sayısı: ${premiumVideos.length}</p>
+                                    <button onclick="alert('Video yükleme paneli (Simülasyon)')" class="w-full bg-gold-400 text-rose-900 font-bold py-2 rounded hover:bg-gold-500">Yeni Video Yükle</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // --- Helper Functions ---
+
+        function renderAuthButtons() {
+            const desktopContainer = document.getElementById('auth-buttons');
+            const mobileContainer = document.getElementById('mobile-auth-buttons');
+            
+            let html = '';
+            if (state.currentUser) {
+                const userLabel = state.currentUser === 'admin' ? 'Yönetici' : 'Üye';
+                const premiumBadge = state.isPremium ? '<span class="text-xs bg-gold-400 text-rose-900 px-2 py-0.5 rounded-full font-bold ml-1">PRO</span>' : '';
+                
+                html = `
+                    <div class="flex items-center">
+                        <span class="text-rose-900 font-bold mr-2">${userLabel} ${premiumBadge}</span>
+                        ${state.currentUser === 'admin' ? `<button onclick="navigateTo('admin')" class="px-3 py-1 bg-rose-900 text-white rounded hover:bg-rose-800 text-xs mr-2">Panel</button>` : ''}
+                        <button onclick="logout()" class="text-gray-500 hover:text-red-600 text-sm ml-2">Çıkış</button>
+                    </div>
+                `;
+            } else {
+                html = `
+                    <button onclick="openModal('login-modal')" class="px-4 py-2 text-rose-900 font-bold hover:text-rose-700 transition-colors">Giriş Yap</button>
+                    <button onclick="openModal('register-modal')" class="px-4 py-2 bg-gold-400 text-rose-900 font-bold rounded hover:bg-gold-500 transition-colors shadow-md">Kayıt Ol</button>
+                `;
+            }
+
+            if(desktopContainer) desktopContainer.innerHTML = html;
+            if(mobileContainer) mobileContainer.innerHTML = html;
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.getElementById(id).classList.add('flex');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.getElementById(id).classList.remove('flex');
+        }
+
+        function buyMembership() {
+            if (!state.currentUser) {
+                alert("Üyelik satın almak için lütfen önce giriş yapınız veya kayıt olunuz.");
+                openModal('login-modal');
+                return;
+            }
+            openPaymentModal('Altın Ejderha Premium Üyelik', 500, 'membership');
+        }
+
+        function openPaymentModal(productName, price, type) {
+            if (!state.currentUser) {
+                alert("Satın alma işlemi için lütfen giriş yapınız.");
+                openModal('login-modal');
+                return;
+            }
+            document.getElementById('payment-product-name').innerText = productName;
+            document.getElementById('payment-product-price').innerText = price.toFixed(2) + " TL";
+            document.getElementById('payment-type').value = type;
+            openModal('payment-modal');
+        }
+
+        // --- Event Handlers ---
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const form = e.target;
+            const username = form.username.value;
+            const password = form.password.value;
+
+            if (username === 'admin' && password === 'Omtareommane') {
+                state.currentUser = 'admin';
+                state.isPremium = true; // Admin has access to everything
+                alert("Yönetici girişi başarılı.");
+            } else {
+                state.currentUser = 'user';
+                // Reset premium for normal user login simulation unless we stored it
+                // For demo purposes, we keep it false initially
+                state.isPremium = false; 
+                alert("Üye girişi başarılı.");
+            }
+            
+            closeModal('login-modal');
+            renderAuthButtons();
+            if(state.currentUser === 'admin') navigateTo('admin');
+            else navigateTo('home');
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            alert("Kayıt başarılı! Hoşgeldiniz.");
+            state.currentUser = 'user';
+            state.isPremium = false;
+            closeModal('register-modal');
+            renderAuthButtons();
+        }
+
+        function logout() {
+            state.currentUser = null;
+            state.isPremium = false;
+            renderAuthButtons();
+            navigateTo('home');
+        }
+
+        function handleConsultationSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const app = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                reason: formData.get('reason')
+            };
+            applications.push(app);
+            alert("Başvurunuz alındı! Yöneticilerimiz inceleyip size dönüş yapacaktır.");
+            e.target.reset();
+        }
+
+        function handleTestimonialSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const newTestimonial = {
+                id: testimonials.length + 1,
+                name: formData.get('name'),
+                text: formData.get('text'),
+                role: formData.get('role'),
+                image: `https://picsum.photos/100?random=${Math.floor(Math.random() * 1000)}`
+            };
+            
+            testimonials.push(newTestimonial);
+            alert("Deneyiminiz başarıyla gönderildi! Teşekkür ederiz.");
+            closeModal('testimonial-modal');
+            e.target.reset();
+            
+            // Refresh home if we are on home
+            if(state.view === 'home') {
+                navigateTo('home');
+            }
+        }
+
+        function handlePayment(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            const type = document.getElementById('payment-type').value;
+            
+            btn.innerText = "İşleniyor...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                closeModal('payment-modal');
+                btn.innerText = originalText;
+                btn.disabled = false;
+
+                if (type === 'membership') {
+                    state.isPremium = true;
+                    alert("Tebrikler! Premium üyeliğiniz aktif edildi. İçeriklere hemen ulaşabilirsiniz.");
+                    renderAuthButtons(); // Update badge
+                    navigateTo('premium'); // Redirect to content
+                } else {
+                    alert("Ödeme Başarılı! Ürünlerinize mail adresinizden ulaşabilirsiniz.");
+                }
+            }, 1500);
+        }
+
+        function handleSubscribe(e) {
+            e.preventDefault();
+            alert("Bültene başarıyla abone oldunuz!");
+            e.target.reset();
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
